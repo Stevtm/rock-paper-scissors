@@ -2,11 +2,19 @@
 var gameChoices = ["rock", "paper", "scissors"];
 
 // create variables to hold the number of wins, losses and ties.
-var results = {
-	wins: 0,
-	losses: 0,
-	ties: 0,
-};
+if (localStorage.getItem("wins")) {
+	var results = {
+		wins: localStorage.getItem("wins"),
+		losses: localStorage.getItem("losses"),
+		ties: localStorage.getItem("ties"),
+	};
+} else {
+	var results = {
+		wins: 0,
+		losses: 0,
+		ties: 0,
+	};
+}
 
 // function to request user input
 var userTurn = function () {
@@ -80,3 +88,8 @@ alert(
 		results.ties +
 		" ties."
 );
+
+// update the local storage with the number of wins
+localStorage.setItem("wins", results.wins);
+localStorage.setItem("losses", results.losses);
+localStorage.setItem("ties", results.ties);
