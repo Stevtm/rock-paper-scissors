@@ -35,30 +35,15 @@ var game = function (user, comp) {
 	if (user === comp) {
 		alert("You both chose " + user + ". It's a tie!");
 		results.ties++;
-	} else if (user === "rock") {
-		if (comp === "paper") {
-			alert("You lost!");
-			results.losses++;
-		} else {
-			alert("You won!");
-			results.wins++;
-		}
-	} else if (user === "paper") {
-		if (comp === "rock") {
-			alert("You won!");
-			results.wins++;
-		} else {
-			alert("You lost!");
-			results.losses++;
-		}
+	} else if (
+		(user === "rock" && comp === "scissors") ||
+		(user === "paper" && comp === "rock") ||
+		(user === "scissors" && comp === "paper")
+	) {
+		alert("You won!");
+		results.wins++;
 	} else {
-		if (comp === "rock") {
-			alert("You lost!");
-			results.losses++;
-		} else {
-			alert("You won!");
-			results.wins++;
-		}
+		alert("You lost!");
 	}
 };
 
@@ -80,13 +65,7 @@ for (var i = 0; i < 3; i++) {
 
 // when the game is overm alert the final total to the user
 alert(
-	"The final score is: " +
-		results.wins +
-		" wins, " +
-		results.losses +
-		" losses, and " +
-		results.ties +
-		" ties."
+	`The final score is ${results.wins} wins, ${results.losses} losses, and ${results.ties} ties`
 );
 
 // update the local storage with the number of wins
